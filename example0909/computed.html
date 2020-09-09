@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <div id="example">
+        <p>원본 : {{message}}</p>
+        <p>역순 메세지 : {{reverseMessage}}</p>
+        <p>역순 메세지 : {{reversedMessage()}}</p>
+        <p>현재 : {{now}}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el : '#example',
+            data : {
+                message : 'test'
+            },
+            computed: {
+                reverseMessage(){
+                    return this.message.split('').reverse().join('');
+                },
+                now(){
+                    return new Date();
+                }
+            },
+            methods : {
+                reversedMessage(){
+                    return this.message.split('').reverse().join('');
+                }
+            }
+        });
+        
+    </script>
+
+</body>
+</html>

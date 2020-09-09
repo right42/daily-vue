@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="app">
+        {{fullName}}
+    </div>
+
+    <div id="demo">
+        {{fullName}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el : '#app',
+            data : {
+                firstName : 'Foo',
+                lastName : 'Bar',
+                fullName : 'Foo Bar'
+            },
+            watch: {
+                firstName(val){
+                    this.fullName = val + ' ' + this.lastName;
+                },
+                lastName(val) {
+                    this.fullName = this.firstName + ' ' + val;
+                }
+            }
+        })
+
+        let demo = new Vue({
+            el : '#demo',
+            data : {
+                firstName : 'Foo',
+                lastName : 'Bar'
+            },
+            computed: {
+                fullName : {
+                    get(){
+                        return this.firstName + ' ' + this.lastName;
+                    },
+                    set(newValue){
+                        console.log("called setter");
+                        let names = newValue.split(' ')
+                        this.firstName = names[0]
+                        this.lastName = names[names.length - 1];
+                    }
+                }
+            },
+        })
+    </script>
+
+</body>
+</html>

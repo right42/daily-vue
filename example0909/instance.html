@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="app">
+        <span> 메세지 : {{msg}}</span>
+        <span v-once> 다시는 변경안함 {{msg}}</span>
+
+        <p>Using mustaches : {{ rawHtml }} </p>
+        <p>Using v-html directives: <span v-html="rawHtml"></span></p>
+
+        <div v-bind:id="dynamicId"></div>
+        <button v-bind:disabled="isButtonDisabled">Button</button>
+
+        <a :href="url"> naver </a>
+        <a :[key]="url"> naver </a>
+
+        <button @click="click"> click me! </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+       let app = new Vue({
+            el : '#app',
+            data : {
+                msg : 'test',
+                rawHtml : '<h1>Hello</h1>',
+                dynamicId : 'dynamicId',
+                isButtonDisabled : false,
+                url : 'https://www.naver.com',
+                key : 'href'
+            },
+            methods : {
+                click() {
+                    alert(' click me !');
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
