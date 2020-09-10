@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <div v-bind:class="classObject">active</div>
+
+        <div :class="computedClassObject">computed</div>
+
+        <div :class="[activeClass, errorClass]"></div>
+
+        <div :style="{color : activeColor}">inline style</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el : '#app',
+            data : {
+                classObject : {
+                    active : false,
+                    'text-danger' : true
+                },
+                activeClass : 'active',
+                errorClass : 'error',
+                activeColor : 'red'
+            },
+            computed : {
+                computedClassObject(){
+                    return {
+                        active : true,
+                        'text-info' : true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

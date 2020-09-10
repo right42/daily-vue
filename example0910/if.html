@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <h1 v-if="awesome">Vue is awesome!</h1>
+        <h1 v-else>Oh no~</h1>
+
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+
+        <div v-if="Math.random() > 0.5">
+            이제 나를 볼 수 있음
+        </div>
+        <div v-else>
+            이제는 안보임
+        </div>
+
+        <div v-if="type === 'A'">
+            A
+        </div>
+        <div v-else-if="type === 'B'">
+            B
+        </div>
+        <div v-else>
+            other
+        </div>
+    </div>
+
+    <div id="login">
+        <template v-if="loginType === 'id'">
+            <label>ID</label>
+            <input placeholder="ID" key="id-input">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Email" key="email-input">
+        </template>
+
+        <button @click="typeChange">Click</button>
+
+        <div v-show="ok">나는 dom에 남아있어</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el : '#app',
+            data : {
+                awesome : true,
+                ok : true,
+                type : 'A'
+            }
+        });
+
+        let login = new Vue({
+            el : '#login',
+            data : {
+                loginType : 'id',
+                ok : true
+            },
+            methods: {
+                typeChange(){
+                    this.loginType = (this.loginType === 'id' ? 'email' : 'id')
+                }
+            },
+        })
+    </script>
+
+</body>
+</html>

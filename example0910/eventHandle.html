@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <button @click="counter += 1">Add 1</button>
+        <p>button click count {{ counter }} </p>
+    </div>
+
+    <div id="app2">
+        <button @click="greet">Greet</button>
+    </div>
+
+    <div id="app3">
+        <button @click="say('hi')">hi</button>
+        <button @click="say('hello', $event)">hello</button>
+    </div>
+
+    <div id="app4">
+        <input @keyup.enter="submit">
+        <input @keyup.page-down="submit">
+        <input @keyup.alt.enter="submit">
+        
+        <button @click.right="rightClick">btn</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        let app4 = new Vue({
+            el : '#app4',
+            methods : {
+                submit(){
+                    alert('called submit');
+                },
+                rightClick(){
+                    alert('right click!')
+                }
+            }
+        })
+
+        let app3 = new Vue({
+            el : '#app3',
+            methods : {
+                say(text, event) {
+                    alert(`${text}`);
+
+                    if (event) {
+                        alert(event.target)
+                    }
+                }
+            }
+        })
+
+        let app = new Vue({
+            el : '#app',
+            data : {
+                counter : 0
+            }
+        })
+
+        let app2 = new Vue({
+            el : '#app2',
+            data : {
+                name : 'Vue.js'
+            },
+            methods : {
+                greet(event){
+                    alert(`Hello ${this.name} ~`);
+                    if(event) {
+                        alert(event.target.tagName);
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
